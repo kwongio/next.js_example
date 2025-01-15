@@ -16,7 +16,7 @@ export const getStaticPaths = () => {
       { params: { id: "2" } },
       { params: { id: "3" } },
     ],
-    fallback: false, // 존재하지 않는 페이지로 설정
+    fallback: "blocking", // SSR로 동작
   };
 };
 
