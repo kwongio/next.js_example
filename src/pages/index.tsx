@@ -1,6 +1,6 @@
 import style from "./index.module.css";
 import SearchableLayout from "@/components/searchable-layout";
-import { ReactNode } from "react";
+import { ReactNode, useEffect } from "react";
 import BookItem from "@/components/book-item";
 import { InferGetStaticPropsType } from "next";
 import fetchBooks from "@/lib/fetch-books";
@@ -17,7 +17,6 @@ export const getStaticProps = async () => {
       allBooks,
       randomBooks,
     },
-    revalidate: 3,
   };
 };
 
