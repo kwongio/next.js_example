@@ -9,6 +9,16 @@ export const getStaticProps = async (context: GetStaticPropsContext) => {
     props: { book },
   };
 };
+export const getStaticPaths = () => {
+  return {
+    paths: [
+      { params: { id: "1" } },
+      { params: { id: "2" } },
+      { params: { id: "3" } },
+    ],
+    fallback: false, // 존재하지 않는 페이지로 설정
+  };
+};
 
 export default function Page({
   book,
