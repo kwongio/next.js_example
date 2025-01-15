@@ -1,0 +1,32 @@
+.container {
+    background-color: white;
+    /* 최대 넓이*/
+    max-width: 600px;
+    /* 세로로 가득 채우도록 설정*/
+    min-height: 100vh;
+    /*화면 가운데 배치*/
+    margin: 0 auto;
+    box-shadow: rgba(100, 100, 100, 0.2) 0 0 29px 0;
+    padding: 0 15px;
+}
+
+.header {
+    height: 60px;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 60px;
+}
+
+.header > a {
+    text-decoration: none;
+    color: black;
+}
+
+.main {
+    padding-top: 10px;
+}
+
+.footer {
+    padding: 100px 0px;
+    color: gray;
+}
