@@ -7,6 +7,7 @@ import fetchBooks from "@/lib/fetch-books";
 import fetchRandomBooks from "@/lib/fetch-random-books";
 
 export const getStaticProps = async () => {
+  console.log("인덱스 페이지");
   const [allBooks, randomBooks] = await Promise.all([
     fetchBooks(),
     fetchRandomBooks(),
@@ -23,7 +24,6 @@ export default function Home({
   allBooks,
   randomBooks,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  console.log(allBooks);
   return (
     <div className={style.container}>
       <section>

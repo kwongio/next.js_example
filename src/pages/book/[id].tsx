@@ -1,10 +1,8 @@
 import style from "./[id].module.css";
-import { GetServerSidePropsContext, InferGetStaticPropsType } from "next";
+import { GetStaticPropsContext, InferGetStaticPropsType } from "next";
 import fetchOneBook from "@/lib/fetch-one-books";
 
-export const getServerSideProps = async (
-  context: GetServerSidePropsContext,
-) => {
+export const getStaticProps = async (context: GetStaticPropsContext) => {
   const id = context.params!.id;
   const book = await fetchOneBook(Number(id));
   return {
@@ -14,7 +12,7 @@ export const getServerSideProps = async (
 
 export default function Page({
   book,
-}: InferGetStaticPropsType<typeof getServerSideProps>) {
+}: InferGetStaticPropsType<typeof getStaticProps>) {
   if (!book) return <div>책 정보가 없습니다.</div>;
   const { id, title, subTitle, description, author, publisher, coverImgUrl } =
     book;

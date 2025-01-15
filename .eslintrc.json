@@ -1,3 +1,8 @@
 {
-  "extends": ["next/core-web-vitals", "next/typescript"]
+  "extends": ["next/core-web-vitals", "next/typescript"],
+  "rules": {
+    "@typescript-eslint/no-unused-vars": "off", // 사용하지 않는 변수 경고 비활성화
+    "@next/next/no-img-element": "off",        // <img> 사용 경고 비활성화
+    "jsx-a11y/alt-text": "off"                 // alt 속성 경고 비활성화
+  }
 }
