@@ -1,10 +1,16 @@
 import style from "./[id].module.css";
 import { GetStaticPropsContext, InferGetStaticPropsType } from "next";
 import fetchOneBook from "@/lib/fetch-one-books";
+import { useRouter } from "next/router";
 
 export const getStaticProps = async (context: GetStaticPropsContext) => {
   const id = context.params!.id;
   const book = await fetchOneBook(Number(id));
+  if (!book) {
+    return {
+      notFound: true,
+    };
+  }
   return {
     props: { book },
   };
@@ -16,14 +22,24 @@ export const getStaticPaths = () => {
       { params: { id: "2" } },
       { params: { id: "3" } },
     ],
-    fallback: "blocking", // SSR로 동작
+    fallback: true,
+    // false: 404 페이지
+    // blocking: SSR 방식
+    // true : SRR 방식 + 데이터가 없는 폴백 상태의 페이지부터 반환
   };
 };
 
 export default function Page({
   book,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  if (!book) return <div>책 정보가 없습니다.</div>;
+  const router = useRouter();
+
+  if (router.isFallback) {
+    return "로딩 중입니다.";
+  }
+  if (!book) {
+    return <div>문제가 발생했습니다. 다시 시도하세요</div>;
+  }
   const { id, title, subTitle, description, author, publisher, coverImgUrl } =
     book;
   return (
